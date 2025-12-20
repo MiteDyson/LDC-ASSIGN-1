@@ -1,4 +1,3 @@
-// frontend/src/App.js
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,30 +5,33 @@ import {
   Navigate,
 } from "react-router-dom";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
-
-// Note: You should create a simple Login.js page similar to Register.js
-const LoginPlaceholder = () => (
-  <div>Login Page (Implement similar to Register)</div>
-);
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<LoginPlaceholder />} />
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/" element={<Navigate to="/login" />} />
-      </Routes>
+      <div className="App">
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+
+          {/* Protected Routes  */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Redirect to login by default */}
+          <Route path="/" element={<Navigate to="/login" />} />
+        </Routes>
+      </div>
     </Router>
   );
 }

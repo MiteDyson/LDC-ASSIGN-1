@@ -1,10 +1,24 @@
-const mongoose = require("mongoose");
+const { DataTypes } = require("sequelize");
+const sequelize = require("../config/db"); // Updated path
 
-const UserSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-  fullName: { type: String, required: true },
-  aadhaarNumber: { type: String, required: true }, // Encrypted string
+const User = sequelize.define("User", {
+  username: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  fullName: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  aadhaarNumber: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
 });
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = User;
