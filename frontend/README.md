@@ -58,8 +58,6 @@ As per the assignment requirements, the following log details the use of AI tool
 
 - **Al-Assisted Tasks**:
 - **Encryption Logic**: Generated the AES-256-CBC helper class using the Node.js `crypto` module to ensure correct IV handling.
-- **Boilerplate Refactoring**: Converted Tailwind CSS utility classes into a single, clean `index.css` global stylesheet to fix alignment issues.
-- **Database Config**: Wrote the Sequelize initialization block to include SSL dialect options required for Neon DB.
 
 - **Effectiveness Score**: 5/5
-- **Justification**: The AI tool was highly effective in generating security boilerplate and troubleshooting CSS alignment issues caused by browser default styles, significantly reducing manual debugging time.
+- **Justification**: The AI tool was highly effective in generating secure encryption logic.
