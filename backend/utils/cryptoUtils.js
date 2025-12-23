@@ -1,7 +1,7 @@
 const crypto = require("crypto");
 
 const ALGORITHM = "aes-256-cbc";
-const KEY = Buffer.from(process.env.ENCRYPTION_KEY, "utf-8");
+const KEY = Buffer.from(process.env.ENCRYPTION_KEY, "utf8"); // Must be 32 chars
 const IV_LENGTH = 16;
 
 const encrypt = (text) => {

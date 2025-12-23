@@ -1,70 +1,65 @@
-# Getting Started with Create React App
+**Assignment 1: Secure User Profile & Access Control System**. It provides a clean setup guide for your Identity Management Microservice using **Neon PostgreSQL** and standard CSS.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Identity Management Microservice
 
-## Available Scripts
+A secure Full Stack User Profile & Access Control System built to manage sensitive user identity data. This project implements stateless authentication and industry-standard encryption for data at rest.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- **Stateless Authentication**: Implements secure Login and Registration APIs using **JWT (JSON Web Tokens)**.
+- **Field-Level Encryption**: Sensitive user data, specifically the **Aadhaar/ID Number**, is stored encrypted at rest using **AES-256-CBC**.
+- **Secure Profile Access**: Authenticated API endpoint to fetch and automatically decrypt user profile data.
+- **Database Integration**: Powered by **Neon PostgreSQL**, a serverless database solution.
+- **Responsive UI**: A clean, centered Identity Portal built with standard CSS for maximum compatibility and performance.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Tech Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Frontend**: React, React Router, Standard CSS (Custom Reset).
+- **Backend**: Node.js, Express.js.
+- **Database**: PostgreSQL (Neon) with Sequelize ORM.
+- **Security**: `bcryptjs` for password hashing, `jsonwebtoken` for auth, and the native `crypto` module for AES-256 encryption.
 
-### `npm test`
+## Setup Instructions
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1. Backend Configuration
 
-### `npm run build`
+1. Navigate to the backend directory: `cd backend`.
+2. Install dependencies: `npm install`.
+3. Create a `.env` file in the `backend` root:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```env
+PORT=5000
+DATABASE_URL=your_neon_postgresql_url?sslmode=require
+JWT_SECRET=your_jwt_secret
+ENCRYPTION_KEY=your_32_character_encryption_key
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Start the server: `npm start`.
 
-### `npm run eject`
+### 2. Frontend Configuration
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Navigate to the frontend directory: `cd frontend`.
+2. Install dependencies: `npm install`.
+3. Ensure your `src/services/api.js` points to your backend URL.
+4. Start the application: `npm start`.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## API Endpoints
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+| Method | Endpoint             | Description                           | Access        |
+| ------ | -------------------- | ------------------------------------- | ------------- |
+| POST   | `/api/auth/register` | Creates a user and encrypts Aadhaar   | Public        |
+| POST   | `/api/auth/login`    | Validates credentials and returns JWT | Public        |
+| GET    | `/api/profile`       | Returns decrypted user profile        | Private (JWT) |
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Al Tool Usage Log
 
-## Learn More
+As per the assignment requirements, the following log details the use of AI tools during development:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **Al-Assisted Tasks**:
+- **Encryption Logic**: Generated the AES-256-CBC helper class using the Node.js `crypto` module to ensure correct IV handling.
+- **Boilerplate Refactoring**: Converted Tailwind CSS utility classes into a single, clean `index.css` global stylesheet to fix alignment issues.
+- **Database Config**: Wrote the Sequelize initialization block to include SSL dialect options required for Neon DB.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **Effectiveness Score**: 5/5
+- **Justification**: The AI tool was highly effective in generating security boilerplate and troubleshooting CSS alignment issues caused by browser default styles, significantly reducing manual debugging time.

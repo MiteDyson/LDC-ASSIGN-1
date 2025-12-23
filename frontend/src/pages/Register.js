@@ -15,10 +15,12 @@ const Register = () => {
     e.preventDefault();
     try {
       await API.post("/auth/register", formData);
-      alert("Success! Please login.");
+      alert("Registration Successful!");
       navigate("/login");
     } catch (err) {
-      alert("Registration Failed");
+      alert(
+        "Registration Failed: " + (err.response?.data?.msg || "Server Error")
+      );
     }
   };
 
@@ -26,60 +28,48 @@ const Register = () => {
     <div className="auth-wrapper">
       <div className="auth-card">
         <div className="auth-header">
-          <h1>Register</h1>
-          <p>Create your identity account</p>
+          <h1>Identity Portal</h1>
+          <p>Register to secure your data</p>
         </div>
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label className="form-label">Full Name</label>
-            <input
-              type="text"
-              className="input-field"
-              placeholder="Full Name"
-              onChange={(e) =>
-                setFormData({ ...formData, fullName: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label className="form-label">Username</label>
-            <input
-              type="text"
-              className="input-field"
-              placeholder="Username"
-              onChange={(e) =>
-                setFormData({ ...formData, username: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label className="form-label">Password</label>
-            <input
-              type="password"
-              className="input-field"
-              placeholder="Password"
-              onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label className="form-label">Aadhaar Number</label>
-            <input
-              type="text"
-              className="input-field"
-              placeholder="Aadhaar Number"
-              onChange={(e) =>
-                setFormData({ ...formData, aadhaarNumber: e.target.value })
-              }
-              required
-            />
-          </div>
+          <input
+            type="text"
+            className="input-field"
+            placeholder="Full Name"
+            onChange={(e) =>
+              setFormData({ ...formData, fullName: e.target.value })
+            }
+            required
+          />
+          <input
+            type="text"
+            className="input-field"
+            placeholder="Username"
+            onChange={(e) =>
+              setFormData({ ...formData, username: e.target.value })
+            }
+            required
+          />
+          <input
+            type="password"
+            className="input-field"
+            placeholder="Password"
+            onChange={(e) =>
+              setFormData({ ...formData, password: e.target.value })
+            }
+            required
+          />
+          <input
+            type="text"
+            className="input-field"
+            placeholder="Aadhaar Number"
+            onChange={(e) =>
+              setFormData({ ...formData, aadhaarNumber: e.target.value })
+            }
+            required
+          />
           <button type="submit" className="btn-submit">
-            Sign Up
+            Create Account
           </button>
         </form>
         <div className="auth-footer">
