@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import API from "../services/api";
 
 const Login = () => {
@@ -9,6 +9,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(""); // Clear previous errors
     try {
       const res = await API.post("/auth/login", formData);
       localStorage.setItem("token", res.data.token);
@@ -72,6 +73,16 @@ const Login = () => {
             Sign In
           </button>
         </form>
+
+        <p className="mt-8 text-center text-slate-600 text-sm">
+          Don't have an account?{" "}
+          <Link
+            to="/register"
+            className="text-blue-600 font-bold hover:underline"
+          >
+            Create Account
+          </Link>
+        </p>
       </div>
     </div>
   );
