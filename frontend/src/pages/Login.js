@@ -9,7 +9,6 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
     try {
       const res = await API.post("/auth/login", formData);
       localStorage.setItem("token", res.data.token);
@@ -20,31 +19,27 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-6">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-extrabold text-slate-900">
-            Identity Portal
-          </h1>
-          <p className="text-slate-500 mt-2">
-            Secure access to your identity profile
-          </p>
+    <div className="auth-container">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h1 className="auth-title">Identity Portal</h1>
+          <p className="auth-subtitle">Secure access to your profile</p>
         </div>
 
         {error && (
-          <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm mb-6 border border-red-100">
+          <div
+            style={{ color: "red", marginBottom: "1rem", fontSize: "0.875rem" }}
+          >
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-2">
-              Username
-            </label>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label className="form-label">Username</label>
             <input
               type="text"
-              className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 transition-all outline-none"
+              className="input-field"
               placeholder="Enter username"
               onChange={(e) =>
                 setFormData({ ...formData, username: e.target.value })
@@ -52,13 +47,11 @@ const Login = () => {
               required
             />
           </div>
-          <div>
-            <label className="block text-sm font-semibold text-slate-700 mb-2">
-              Password
-            </label>
+          <div className="form-group">
+            <label className="form-label">Password</label>
             <input
               type="password"
-              className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 transition-all outline-none"
+              className="input-field"
               placeholder="••••••••"
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
@@ -66,23 +59,17 @@ const Login = () => {
               required
             />
           </div>
-          <button
-            type="submit"
-            className="w-full bg-slate-900 text-white py-3 rounded-xl font-bold hover:bg-slate-800 transition-all shadow-lg active:scale-95"
-          >
+          <button type="submit" className="btn-primary">
             Sign In
           </button>
         </form>
 
-        <p className="mt-8 text-center text-slate-600 text-sm">
+        <div className="auth-footer">
           Don't have an account?{" "}
-          <Link
-            to="/register"
-            className="text-blue-600 font-bold hover:underline"
-          >
-            Create Account
+          <Link to="/register" className="auth-link">
+            Register Now
           </Link>
-        </p>
+        </div>
       </div>
     </div>
   );

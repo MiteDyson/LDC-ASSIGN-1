@@ -23,61 +23,68 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl p-8 border border-slate-100">
-        <h2 className="text-3xl font-bold text-slate-800 text-center mb-8">
-          Create Account
-        </h2>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            type="text"
-            placeholder="Full Name"
-            className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none transition-all"
-            onChange={(e) =>
-              setFormData({ ...formData, fullName: e.target.value })
-            }
-            required
-          />
-          <input
-            type="text"
-            placeholder="Username"
-            className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none transition-all"
-            onChange={(e) =>
-              setFormData({ ...formData, username: e.target.value })
-            }
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none transition-all"
-            onChange={(e) =>
-              setFormData({ ...formData, password: e.target.value })
-            }
-            required
-          />
-          <input
-            type="text"
-            placeholder="Aadhaar Number"
-            className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none transition-all"
-            onChange={(e) =>
-              setFormData({ ...formData, aadhaarNumber: e.target.value })
-            }
-            required
-          />
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow-lg"
-          >
+    <div className="auth-wrapper">
+      <div className="auth-card">
+        <div className="auth-header">
+          <h1>Join Portal</h1>
+          <p>Create your identity profile</p>
+        </div>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label className="form-label">Full Name</label>
+            <input
+              type="text"
+              className="input-field"
+              placeholder="John Doe"
+              onChange={(e) =>
+                setFormData({ ...formData, fullName: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Username</label>
+            <input
+              type="text"
+              className="input-field"
+              placeholder="username123"
+              onChange={(e) =>
+                setFormData({ ...formData, username: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Password</label>
+            <input
+              type="password"
+              className="input-field"
+              placeholder="••••••••"
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Aadhaar Number</label>
+            <input
+              type="text"
+              className="input-field"
+              placeholder="1234 5678 9012"
+              onChange={(e) =>
+                setFormData({ ...formData, aadhaarNumber: e.target.value })
+              }
+              required
+            />
+          </div>
+          <button type="submit" className="btn-submit">
             Register
           </button>
         </form>
-        <p className="mt-6 text-center text-slate-600">
-          Already have an account?{" "}
-          <Link to="/login" className="text-blue-600 font-medium">
-            Login
-          </Link>
-        </p>
+        <div className="auth-footer">
+          Already have an account? <Link to="/login">Sign In</Link>
+        </div>
       </div>
     </div>
   );
