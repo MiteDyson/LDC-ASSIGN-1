@@ -15,7 +15,7 @@ const Register = () => {
     e.preventDefault();
     try {
       await API.post("/auth/register", formData);
-      alert("Registration Successful!");
+      alert("Success! Please login.");
       navigate("/login");
     } catch (err) {
       alert("Registration Failed");
@@ -26,8 +26,8 @@ const Register = () => {
     <div className="auth-wrapper">
       <div className="auth-card">
         <div className="auth-header">
-          <h1>Join Portal</h1>
-          <p>Create your identity profile</p>
+          <h1>Register</h1>
+          <p>Create your identity account</p>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -35,7 +35,7 @@ const Register = () => {
             <input
               type="text"
               className="input-field"
-              placeholder="John Doe"
+              placeholder="Full Name"
               onChange={(e) =>
                 setFormData({ ...formData, fullName: e.target.value })
               }
@@ -47,7 +47,7 @@ const Register = () => {
             <input
               type="text"
               className="input-field"
-              placeholder="username123"
+              placeholder="Username"
               onChange={(e) =>
                 setFormData({ ...formData, username: e.target.value })
               }
@@ -59,7 +59,7 @@ const Register = () => {
             <input
               type="password"
               className="input-field"
-              placeholder="••••••••"
+              placeholder="Password"
               onChange={(e) =>
                 setFormData({ ...formData, password: e.target.value })
               }
@@ -71,7 +71,7 @@ const Register = () => {
             <input
               type="text"
               className="input-field"
-              placeholder="1234 5678 9012"
+              placeholder="Aadhaar Number"
               onChange={(e) =>
                 setFormData({ ...formData, aadhaarNumber: e.target.value })
               }
@@ -79,11 +79,14 @@ const Register = () => {
             />
           </div>
           <button type="submit" className="btn-submit">
-            Register
+            Sign Up
           </button>
         </form>
         <div className="auth-footer">
-          Already have an account? <Link to="/login">Sign In</Link>
+          Already have an account?{" "}
+          <Link to="/login" className="auth-link">
+            Sign In
+          </Link>
         </div>
       </div>
     </div>

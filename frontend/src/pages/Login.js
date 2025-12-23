@@ -9,7 +9,9 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(""); // Clear previous errors
     try {
+      // Authenticates user against the backend/Neon DB
       const res = await API.post("/auth/login", formData);
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard");
@@ -19,16 +21,24 @@ const Login = () => {
   };
 
   return (
-    <div className="auth-container">
+    <div className="auth-wrapper">
       <div className="auth-card">
         <div className="auth-header">
-          <h1 className="auth-title">Identity Portal</h1>
-          <p className="auth-subtitle">Secure access to your profile</p>
+          <h1>Identity Portal</h1>
+          <p>Secure access to your identity profile</p>
         </div>
 
         {error && (
           <div
-            style={{ color: "red", marginBottom: "1rem", fontSize: "0.875rem" }}
+            style={{
+              color: "#dc2626",
+              backgroundColor: "#fef2f2",
+              padding: "10px",
+              borderRadius: "8px",
+              marginBottom: "15px",
+              fontSize: "14px",
+              border: "1px solid #fee2e2",
+            }}
           >
             {error}
           </div>
@@ -59,7 +69,7 @@ const Login = () => {
               required
             />
           </div>
-          <button type="submit" className="btn-primary">
+          <button type="submit" className="btn-submit">
             Sign In
           </button>
         </form>

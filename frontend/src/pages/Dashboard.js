@@ -3,7 +3,6 @@ import API from "../services/api";
 
 const Dashboard = () => {
   const [profile, setProfile] = useState(null);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -11,24 +10,17 @@ const Dashboard = () => {
         const res = await API.get("/profile");
         setProfile(res.data);
       } catch (err) {
-        setError("Failed to fetch profile data.");
+        console.error("Fetch error");
       }
     };
     fetchProfile();
   }, []);
 
-  if (error) return <div className="dashboard-container">{error}</div>;
   if (!profile) return <div className="dashboard-container">Loading...</div>;
 
   return (
     <div className="dashboard-container">
-      <header
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          marginBottom: "20px",
-        }}
-      >
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
         <h2>Welcome, {profile.fullName}</h2>
         <button
           onClick={() => {
@@ -36,22 +28,29 @@ const Dashboard = () => {
             window.location.href = "/login";
           }}
           style={{
-            background: "none",
+            backgroundColor: "#ef4444", // Red color
+            color: "white",
+            padding: "8px 16px",
+            borderRadius: "8px",
             border: "none",
-            color: "red",
+            fontWeight: "bold",
             cursor: "pointer",
+            fontSize: "14px",
+            transition: "opacity 0.2s",
           }}
+          onMouseOver={(e) => (e.target.style.opacity = "0.8")}
+          onMouseOut={(e) => (e.target.style.opacity = "1")}
         >
           Logout
         </button>
-      </header>
+      </div>
       <div className="profile-card">
         <p>
           <strong>Username:</strong> {profile.username}
         </p>
-        <div className="data-badge">
+        <p>
           <strong>Decrypted Aadhaar:</strong> {profile.aadhaarNumber}
-        </div>
+        </p>
       </div>
     </div>
   );

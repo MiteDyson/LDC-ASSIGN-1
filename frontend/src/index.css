@@ -1,18 +1,17 @@
-/* 1. Reset browser defaults to fix alignment */
+/* 1. Global Reset to fix alignment and box-sizing */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box; /* Prevents padding from breaking layout */
+  box-sizing: border-box;
 }
 
 body {
   background-color: #f8fafc;
-  font-family: "Inter", -apple-system, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   color: #0f172a;
-  line-height: 1.5;
 }
 
-/* 2. Centering Wrapper for Login and Register */
+/* 2. Centering Wrapper for Auth Pages */
 .auth-wrapper {
   min-height: 100vh;
   display: flex;
@@ -21,7 +20,7 @@ body {
   padding: 20px;
 }
 
-/* 3. Modern Card Design */
+/* 3. Reusable Card Design */
 .auth-card {
   background: white;
   padding: 40px;
@@ -30,8 +29,6 @@ body {
   border: 1px solid #e2e8f0;
   width: 100%;
   max-width: 400px;
-  display: flex;
-  flex-direction: column;
 }
 
 .auth-header {
@@ -45,15 +42,9 @@ body {
   margin-bottom: 8px;
 }
 
-.auth-header p {
-  color: #64748b;
-  font-size: 14px;
-}
-
-/* 4. Form and Input Styling */
+/* 4. Form Components */
 .form-group {
   margin-bottom: 16px;
-  width: 100%;
 }
 
 .form-label {
@@ -69,12 +60,6 @@ body {
   border-radius: 8px;
   border: 1px solid #cbd5e1;
   font-size: 16px;
-  transition: border-color 0.2s;
-}
-
-.input-field:focus {
-  outline: none;
-  border-color: #3b82f6;
 }
 
 .btn-submit {
@@ -85,34 +70,31 @@ body {
   border-radius: 8px;
   border: none;
   font-weight: 700;
-  font-size: 16px;
   cursor: pointer;
-  margin-top: 10px;
 }
 
 .auth-footer {
   text-align: center;
-  margin-top: 24px;
+  margin-top: 20px;
   font-size: 14px;
 }
 
 .auth-link {
   color: #3b82f6;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 700;
 }
 
-/* 5. Dashboard Specifics */
+/* 5. Dashboard Layout */
 .dashboard-container {
   max-width: 800px;
   margin: 40px auto;
-  padding: 0 20px;
+  padding: 20px;
 }
 
 .profile-card {
   background: white;
-  border-radius: 12px;
   padding: 24px;
+  border-radius: 12px;
   border: 1px solid #e2e8f0;
-  margin-top: 20px;
 }
