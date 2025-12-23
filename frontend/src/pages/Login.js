@@ -7,69 +7,72 @@ const Login = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
     try {
-      // Requirement: Implement a secure Login API using JWT
       const res = await API.post("/auth/login", formData);
-
-      // Store token for stateless authentication
       localStorage.setItem("token", res.data.token);
-
-      // Navigate to protected dashboard after successful login
       navigate("/dashboard");
     } catch (err) {
-      // Requirement: Robust client-side error handling
-      setError(
-        err.response?.data?.msg || "Invalid credentials. Please try again."
-      );
+      setError("Authentication failed. Please check your credentials.");
     }
   };
 
   return (
-    <div
-      style={{ maxWidth: "400px", margin: "50px auto", textAlign: "center" }}
-    >
-      <h2>Login to Profile</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <form
-        onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "column", gap: "10px" }}
-      >
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value={formData.username}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit" style={{ padding: "10px", cursor: "pointer" }}>
-          Login
-        </button>
-      </form>
-      <p>
-        Don't have an account?{" "}
-        <span
-          style={{ color: "blue", cursor: "pointer" }}
-          onClick={() => navigate("/register")}
-        >
-          Register here
-        </span>
-      </p>
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-6">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-extrabold text-slate-900">
+            Identity Portal
+          </h1>
+          <p className="text-slate-500 mt-2">
+            Secure access to your identity profile
+          </p>
+        </div>
+
+        {error && (
+          <div className="bg-red-50 text-red-600 p-3 rounded-lg text-sm mb-6 border border-red-100">
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="block text-sm font-semibold text-slate-700 mb-2">
+              Username
+            </label>
+            <input
+              type="text"
+              className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 transition-all outline-none"
+              placeholder="Enter username"
+              onChange={(e) =>
+                setFormData({ ...formData, username: e.target.value })
+              }
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-sm font-semibold text-slate-700 mb-2">
+              Password
+            </label>
+            <input
+              type="password"
+              className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 transition-all outline-none"
+              placeholder="••••••••"
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-slate-900 text-white py-3 rounded-xl font-bold hover:bg-slate-800 transition-all shadow-lg active:scale-95"
+          >
+            Sign In
+          </button>
+        </form>
+      </div>
     </div>
   );
 };

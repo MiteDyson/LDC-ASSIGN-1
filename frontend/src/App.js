@@ -12,13 +12,10 @@ import ProtectedRoute from "./components/ProtectedRoute";
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="min-h-screen bg-slate-50 text-slate-900 font-sans">
         <Routes>
-          {/* Public Routes */}
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-
-          {/* Protected Routes  */}
           <Route
             path="/dashboard"
             element={
@@ -27,8 +24,6 @@ function App() {
               </ProtectedRoute>
             }
           />
-
-          {/* Redirect to login by default */}
           <Route path="/" element={<Navigate to="/login" />} />
         </Routes>
       </div>
